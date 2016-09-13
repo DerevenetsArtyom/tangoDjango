@@ -150,7 +150,7 @@ def like_category(request):
 
     likes = 0
     if cat_id:
-        cat = Category.objects.get(ig=int(cat_id))
+        cat = Category.objects.get(id=int(cat_id))
         if cat:
             cat.likes += 1
             cat.save()
