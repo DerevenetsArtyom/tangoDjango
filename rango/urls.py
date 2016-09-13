@@ -14,6 +14,9 @@ urlpatterns = [
     # About Page
     url(r'^about/$', views.about, name='about'),
 
+    # Search
+    url(r'^search/$', views.search, name='search'),
+
     # Custom accounts
     url(r'^restricted/', views.restricted, name='restricted'),
 
