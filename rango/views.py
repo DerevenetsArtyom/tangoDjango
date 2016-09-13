@@ -121,6 +121,7 @@ def search(request):
     return render(request, 'rango/search.html', {'result_list': result_list})
 
 
+# Set the number of page viewing
 def track_url(request):
 
     page_id = None
@@ -138,6 +139,29 @@ def track_url(request):
             except:
                 pass
     return redirect(url)
+
+
+# Add like to category
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == "GET":
+        cat_id = request.GET['category_id']
+
+    likes = 0
+    if cat_id:
+        cat = Category.objects.get(ig=int(cat_id))
+        if cat:
+            cat.likes += 1
+            cat.save()
+    return HttpResponse(likes)
+
+
+
+
+
+
+
 
 
 # Isn't use because Reg_Redux

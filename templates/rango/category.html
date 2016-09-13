@@ -7,12 +7,16 @@
 		<h1>{{ category_name }}</h1>
 
 		{% if category %}
-		<p>
-		<b id="like_count">{{ category.likes }}</b> people like this category
+			<p>
+			<strong id="like_count">{{ category.likes }}</strong> people like this category
 
 		{% if user.is_authenticated %}
-			<button id ="likes" data-catid="{{category.id}}" class="btn btn-mini btn-primary" type="button">Like</button>
+			<button id="likes" data-catid="{{category.id}}" class="btn btn-primary" type="button">
+			<span class="glyphicon glyphicon-thumbs-up"></span>
+			Like
+			</button>
 		{% endif %}
+
 		</p>
 
 		<br/>

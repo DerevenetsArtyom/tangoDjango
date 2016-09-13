@@ -20,6 +20,9 @@ urlpatterns = [
     # Go to page
     url(r'^goto/$', views.track_url, name='goto'),
 
+    # Like category
+    url(r'^like_category/$', views.like_category, name='like_category'),
+
     # Custom accounts
     url(r'^restricted/', views.restricted, name='restricted'),
 
