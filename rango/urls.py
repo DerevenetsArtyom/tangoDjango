@@ -23,6 +23,10 @@ urlpatterns = [
     # Like category
     url(r'^like_category/$', views.like_category, name='like_category'),
 
+
+    url(r'^suggest_category/$', views.suggest_category, name='suggest_category'),
+
+
     # Custom accounts
     url(r'^restricted/', views.restricted, name='restricted'),
 
