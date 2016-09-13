@@ -18,29 +18,29 @@
             <form class="form-inline" id="user_form" method="post" action="{% url 'search' %}">
                 {% csrf_token %}
                 <!-- Display the search form elements here -->
-                <input class="form-control" type="text" size="30" name="query" value="" id="query" style="margin:20px"/>
+                <input class="form-control" type="text" size="30" name="query" value="{{query}}" id="query" style="margin:20px"/>
                 <input class="btn btn-primary" type="submit" name="submit" value="Search" />
                 <br />
             </form>
 
             <div class="panel">
-                {% if result_list %}
-                    <div class="panel-heading">
+            {% if result_list %}
+            <div class="panel-heading">
                     <h3 class="panel-title">Results</h3>
                     <!-- Display search results in an ordered list -->
                     <div class="panel-body">
-                        <div class="list-group">
+                    <div class="list-group">
                             {% for result in result_list %}
-                                <div class="list-group-item">
-                                    <h4 class="list-group-item-heading"><a href="{{ result.link }}">{{ result.title }}</a></h4>
-                                    <p class="list-group-item-text">{{ result.summary }}</p>
-                                </div>
-                            {% endfor %}
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading"><a href="{{ result.link }}">{{ result.title }}</a></h4>
+                            <p class="list-group-item-text">{{ result.summary }}</p>
                         </div>
-                    </div>
-                {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+            {% endif %}
+            </div>
+        </div>
  </div>
 
 {% endblock %}
