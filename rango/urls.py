@@ -17,6 +17,9 @@ urlpatterns = [
     # Search
     url(r'^search/$', views.search, name='search'),
 
+    # Go to page
+    url(r'^goto/$', views.track_url, name='goto'),
+
     # Custom accounts
     url(r'^restricted/', views.restricted, name='restricted'),
 
