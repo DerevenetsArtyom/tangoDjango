@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -36,7 +36,7 @@ def category(request, category_name_slug):
         context_dict['category_name_slug'] = category.slug
 
         # Retrieve all of the associated pages.
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by('-views')
 
         # Adds our results list to the template context under name pages.
         context_dict['pages'] = pages
@@ -107,6 +107,7 @@ def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
 
 
+# Search using Bing
 def search(request):
     result_list = []
 
@@ -118,6 +119,25 @@ def search(request):
             result_list = run_query(query)
 
     return render(request, 'rango/search.html', {'result_list': result_list})
+
+
+def track_url(request):
+
+    page_id = None
+    url = '/rango'
+
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            # print(type(page_id))
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                url = page.url
+            except:
+                pass
+    return redirect(url)
 
 
 # Isn't use because Reg_Redux
