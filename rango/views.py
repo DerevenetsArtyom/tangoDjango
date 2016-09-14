@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-
+from rest_framework import viewsets
+from rango.serializers import CategorySerializer, PageSerializer
 
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
@@ -182,7 +183,17 @@ def suggest_category(request):
         return render(request, 'rango/cats.html', {'cats': cat_list})
 
 
+# Views for REST Framework
 
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerialize
+
+
+class PageViewSet(viewsets.ModelViewSet):
+
+    queryset = Page.objects.all()
+    serializer_class = PageSerializer
 
 
 
