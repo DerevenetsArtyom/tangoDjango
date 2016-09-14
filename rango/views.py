@@ -187,16 +187,12 @@ def suggest_category(request):
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
-    serializer_class = CategorySerialize
+    serializer_class = CategorySerializer
 
 
 class PageViewSet(viewsets.ModelViewSet):
-
     queryset = Page.objects.all()
     serializer_class = PageSerializer
-
-
-
 
 
 # Isn't use because Reg_Redux
