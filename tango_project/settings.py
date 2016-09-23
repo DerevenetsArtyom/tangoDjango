@@ -126,3 +126,23 @@ REST_FRAMEWORK = {
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
+
+SUIT_CONFIG = {
+    # header
+    'ADMIN_NAME': 'Tango with Django',
+    'HEADER_DATE_FORMAT': 'l, j. F Y',
+    'HEADER_TIME_FORMAT': 'H:i',
+
+    # forms
+    'SHOW_REQUIRED_ASTERISK': True,  # Default True
+    'CONFIRM_UNSAVED_CHANGES': True, # Default True
+
+    # menu
+    'MENU_ICONS': {
+       'rango': 'icon-th',
+       'registration': 'icon-lock',
+    },
+
+    'MENU_EXCLUDE': ('registration',),
+
+}
