@@ -32,8 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-     'suit',
-     'suit_redactor',
+    'suit',
+    'suit_redactor',
+    'suit_ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -5,12 +5,13 @@ from rango.models import Category, Page, UserProfile
 
 from suit.widgets import NumberInput
 from suit_redactor.widgets import RedactorWidget
+from suit_ckeditor.widgets import CKEditorWidget
 
 
 class PageForm(ModelForm):
     class Meta:
         widgets = {
-            'title': TextInput(attrs={'class': 'input-xlarge'}),
+            'title': CKEditorWidget(),
             'views': NumberInput,
         }
 
