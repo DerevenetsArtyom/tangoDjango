@@ -4,6 +4,7 @@ from django.forms import TextInput, ModelForm
 from rango.models import Category, Page, UserProfile
 
 from suit.widgets import NumberInput
+from suit_redactor.widgets import RedactorWidget
 
 
 class PageForm(ModelForm):
@@ -37,7 +38,17 @@ class PageAdmin(admin.ModelAdmin):
     )
 
 
+class CategoryForm(ModelForm):
+    class Meta:
+        widgets = {
+            'name': RedactorWidget(editor_options={'lang': 'en'})
+        }
+
+
 class CategoryAdmin(admin.ModelAdmin):
+
+    form = CategoryForm
+
     list_display = ('name', 'views', 'likes', 'slug')
     prepopulated_fields = {'slug': ('name',)}
 
