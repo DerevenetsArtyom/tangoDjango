@@ -1,9 +1,40 @@
 from django.contrib import admin
+from django.forms import TextInput, ModelForm
+
 from rango.models import Category, Page, UserProfile
+
+from suit.widgets import NumberInput
+
+
+class PageForm(ModelForm):
+    class Meta:
+        widgets = {
+            'title': TextInput(attrs={'class': 'input-xlarge'}),
+            'views': NumberInput,
+        }
 
 
 class PageAdmin(admin.ModelAdmin):
+    form = PageForm
+    search_fields = ('title',)
     list_display = ('title', 'category', 'url')
+
+    fieldsets = [
+        ('Title', {
+            'classes': ('suit-tab', 'suit-tab-title',),
+            'fields': ['title']
+        }),
+        ('Category', {
+            'classes': ('suit-tab', 'suit-tab-category',),
+            'fields': ['category']}),
+        ('Info', {
+            'classes': ('suit-tab', 'suit-tab-info',),
+            'fields': ['url', 'views']}),
+    ]
+
+    suit_form_tabs = (
+        ('title', 'Title'), ('category', 'Category'), ('info', 'Info'),
+    )
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -14,4 +45,3 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(UserProfile)
-
