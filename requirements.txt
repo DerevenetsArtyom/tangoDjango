@@ -1,5 +1,7 @@
 Django==1.8
 django-registration-redux==1.4
 django-suit==0.2.21
+django-suit-ckeditor==0.0.2
+django-suit-redactor==0.0.4
 djangorestframework==3.4.6
 wheel==0.24.0
